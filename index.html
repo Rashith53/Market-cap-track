@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>Market Map</title>
+<meta name="theme-color" content="#12213A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Market Map">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFEE;
+    --paper-raised:#FFFFFF;
+    --ink:#1F2A44;
+    --ink-soft:#5B6478;
+    --navy:#12213A;
+    --gold:#C9962C;
+    --gold-soft:#E9D3A0;
+    --silver:#8B96A0;
+    --silver-soft:#D8DEE2;
+    --teal:#3E6259;
+    --teal-soft:#CFE0DA;
+    --plum:#6E6AA0;
+    --plum-soft:#DAD9EB;
+    --line:#D6D9D2;
+    --danger:#B4463C;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:64px;
+  }
+  .num{font-family:'IBM Plex Mono',monospace;}
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  header.top{
+    background:var(--navy);
+    color:#F4F1EA;
+    padding:18px 18px 16px;
+    position:relative;
+    z-index:2;
+  }
+  header.top .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+  }
+  header.top h1{font-size:24px;color:#F7F5EF;}
+  header.top .sub{font-size:13px;color:#B7C0D1;margin-top:4px;}
+
+  nav.tabs{
+    display:flex;
+    background:var(--navy);
+    padding:10px 14px 14px;
+    gap:8px;
+    position:fixed;
+    left:0; right:0; top:0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(18,33,58,.18);
+  }
+  nav.tabs button{
+    flex:1;
+    border:none;
+    padding:10px 8px;
+    border-radius:999px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    cursor:pointer;
+    background:rgba(255,255,255,0.08);
+    color:#D9DEE8;
+    transition:background .15s ease, color .15s ease;
+  }
+  nav.tabs button.active{
+    background:var(--gold);
+    color:var(--navy);
+  }
+
+  main{padding:78px 16px 8px;max-width:640px;margin:0 auto;}
+  section.view{display:none;}
+  section.view.active{display:block;}
+
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+    margin-bottom:14px;
+  }
+  .card h2{font-size:17px;margin-bottom:4px;}
+  .card .hint{font-size:12.5px;color:var(--ink-soft);line-height:1.45;margin-bottom:12px;}
+
+  /* Signature element: ledger stripe */
+  .stripe-wrap{margin-bottom:6px;}
+  .stripe{
+    display:flex;
+    width:100%;
+    height:34px;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .stripe .seg{
+    height:100%;
+    transition:width .35s ease;
+    min-width:0;
+  }
+  .stripe .seg.n50{background:var(--gold);}
+  .stripe .seg.nx50{background:var(--teal);}
+  .stripe .seg.mid{background:var(--silver);}
+  .stripe .seg.small{background:var(--plum);}
+  .stripe .seg.other{background:var(--line);}
+  .stripe-legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 16px;
+    margin-top:10px;
+    font-size:12.5px;
+  }
+  .stripe-legend span.dot{
+    display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;
+  }
+  .dot.n50{background:var(--gold);} .dot.nx50{background:var(--teal);}
+  .dot.mid{background:var(--silver);} .dot.small{background:var(--plum);} .dot.other{background:var(--line);}
+  .legend-item{display:flex;align-items:center;color:var(--ink-soft);}
+  .legend-item b{color:var(--ink);font-family:'IBM Plex Mono',monospace;margin-left:5px;}
+
+  .totals-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:14px;
+  }
+  .totals-grid .tile{
+    background:var(--paper);
+    border-radius:10px;
+    padding:10px 12px;
+  }
+  .totals-grid .tile .lbl{font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;}
+  .totals-grid .tile .val{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;margin-top:2px;}
+
+  /* fund list */
+  .fund-row{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+    background:var(--paper);
+  }
+  .fund-row.editing{
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px var(--gold-soft);
+  }
+  .fund-row .top-line{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:8px;
+  }
+  .fund-row .fname{font-weight:600;font-size:14.5px;}
+  .fund-row .famt{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);margin-top:2px;}
+  .fund-row .actions{display:flex;gap:4px;flex-shrink:0;}
+  .fund-row .actions button{
+    border:none;background:none;font-size:12px;cursor:pointer;
+    padding:4px 7px;font-weight:600;border-radius:6px;
+  }
+  .fund-row .edit-btn{color:var(--navy);background:var(--silver-soft);}
+  .fund-row .del{color:var(--danger);}
+  .fund-row .mini-stripe{
+    display:flex;height:8px;border-radius:5px;overflow:hidden;margin-top:9px;border:1px solid var(--line);
+  }
+  .fund-row .mini-breakdown{
+    display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:7px;font-size:11.5px;color:var(--ink-soft);
+  }
+  .fund-row .mini-breakdown b{color:var(--ink);font-family:'IBM Plex Mono',monospace;}
+
+  /* form */
+  label{
+    display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);
+    margin:10px 0 5px;
+  }
+  label:first-child{margin-top:0;}
+  input[type=text], input[type=number]{
+    width:100%;
+    padding:10px 11px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    font-size:15px;
+    font-family:'Inter',sans-serif;
+    background:#fff;
+    color:var(--ink);
+  }
+  input[type=number]{font-family:'IBM Plex Mono',monospace;}
+  input:focus{outline:2px solid var(--gold);outline-offset:1px;}
+  .pct-row{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;}
+  .pct-row label{margin-top:0;}
+  .other-note{font-size:12px;color:var(--ink-soft);margin-top:8px;}
+  .other-note.warn{color:var(--danger);font-weight:600;}
+
+  .autocomplete-wrap{position:relative;}
+  ul.autocomplete-list{
+    list-style:none;margin:0;padding:0;
+    position:absolute;
+    top:calc(100% + 4px);
+    left:0;right:0;
+    max-height:200px;
+    overflow-y:auto;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(18,33,58,0.14);
+    z-index:30;
+    display:none;
+  }
+  ul.autocomplete-list.open{display:block;}
+  ul.autocomplete-list li{
+    padding:10px 12px;
+    font-size:13.5px;
+    color:var(--ink);
+    border-bottom:1px solid var(--paper);
+    cursor:pointer;
+    white-space:normal;
+    word-break:break-word;
+  }
+  ul.autocomplete-list li:last-child{border-bottom:none;}
+  ul.autocomplete-list li:active,
+  ul.autocomplete-list li.hover{background:var(--paper);}
+
+  .import-row{
+    border:1px solid var(--line);border-radius:8px;padding:10px;
+    margin-bottom:8px;background:var(--paper);
+  }
+  .import-row .row-top{display:flex;align-items:center;gap:8px;}
+  .import-row input[type=checkbox]{width:18px;height:18px;flex-shrink:0;accent-color:var(--navy);}
+  .import-row input[type=text]{flex:1;font-size:13.5px;padding:8px 9px;}
+  .import-row .row-bottom{margin-top:7px;}
+  .import-row .amt-input{width:150px;font-size:13.5px;padding:8px 9px;}
+  .import-row .guess-note{font-size:11px;color:var(--ink-soft);margin-top:6px;}
+
+  button.primary{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:9px;
+    background:var(--navy);
+    color:#F4F1EA;
+    font-weight:600;
+    font-size:14.5px;
+    cursor:pointer;
+    margin-top:14px;
+  }
+  button.primary:active{transform:scale(0.99);}
+  button.ghost{
+    width:100%;
+    padding:11px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:transparent;
+    color:var(--ink);
+    font-weight:600;
+    font-size:13.5px;
+    cursor:pointer;
+  }
+  button.link{
+    border:none;background:none;color:var(--navy);
+    font-weight:600;font-size:13px;text-decoration:underline;
+    cursor:pointer;padding:6px 0;
+  }
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  .empty{
+    text-align:center;padding:26px 10px;color:var(--ink-soft);font-size:13.5px;
+  }
+
+  /* gold silver */
+  .rate-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11.5px;color:var(--ink-soft);margin-bottom:2px;
+  }
+  .rate-meta .src{font-family:'IBM Plex Mono',monospace;}
+  .rate-meta .live-dot{color:var(--teal);font-weight:700;}
+  .rate-meta .stale-dot{color:var(--ink-soft);}
+  .price-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;
+  }
+  .price-tile{
+    border-radius:12px;padding:14px 12px;text-align:center;
+  }
+  .price-tile.gold-tile{background:var(--gold-soft);}
+  .price-tile.silver-tile{background:var(--silver-soft);}
+  .price-tile .lbl{font-size:11.5px;color:var(--ink);opacity:0.75;font-weight:600;}
+  .price-tile .val{font-size:22px;font-weight:700;margin-top:4px;color:var(--navy);}
+
+  .ratio-display{
+    display:flex;align-items:baseline;gap:10px;margin:8px 0 4px;
+  }
+  .ratio-display .big{
+    font-family:'Fraunces',serif;font-weight:700;font-size:48px;color:var(--navy);
+  }
+  .ratio-display .colon{font-size:20px;color:var(--ink-soft);}
+  .verdict{
+    margin-top:14px;padding:13px 14px;border-radius:10px;font-size:14px;line-height:1.5;
+  }
+  .verdict.gold-lean{background:var(--gold-soft);color:#5C4413;}
+  .verdict.silver-lean{background:var(--silver-soft);color:#3A4650;}
+  .verdict.neutral{background:var(--teal-soft);color:#264038;}
+  .verdict b{display:block;font-family:'Fraunces',serif;font-size:15px;margin-bottom:3px;}
+
+  .scale{
+    position:relative;height:8px;border-radius:5px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--gold) 30%, var(--teal-soft) 45%, var(--teal-soft) 65%, var(--silver) 80%, var(--silver) 100%);
+    margin-top:16px;
+  }
+  .scale .marker{
+    position:absolute;top:-5px;width:3px;height:18px;background:var(--navy);border-radius:2px;
+  }
+  .scale-labels{display:flex;justify-content:space-between;font-size:10.5px;color:var(--ink-soft);margin-top:6px;font-family:'IBM Plex Mono',monospace;}
+
+  table.param-table{
+    width:100%;border-collapse:collapse;margin-top:14px;font-size:12.5px;
+  }
+  table.param-table th, table.param-table td{
+    text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);
+  }
+  table.param-table th{color:var(--ink-soft);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.03em;}
+  table.param-table td.action{font-weight:600;}
+  table.param-table tr.current{background:var(--paper);}
+
+  table.target-table{
+    width:100%;border-collapse:collapse;margin-top:6px;font-size:12.5px;
+  }
+  table.target-table th, table.target-table td{
+    text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);
+  }
+  table.target-table th{color:var(--ink-soft);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;}
+  table.target-table td.num{font-family:'IBM Plex Mono',monospace;}
+  table.target-table .adj-add{color:var(--teal);font-weight:700;}
+  table.target-table .adj-remove{color:var(--danger);font-weight:700;}
+  table.target-table .adj-ok{color:var(--ink-soft);font-weight:600;}
+  table.target-table td.cat{display:flex;align-items:center;gap:7px;font-weight:600;}
+  table.target-table .dot{display:inline-block;width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+
+  .update-form{
+    margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:none;
+  }
+  .update-form.open{display:block;}
+
+  footer.disclaimer{
+    max-width:640px;margin:6px auto 0;padding:0 16px;
+    font-size:11.5px;color:var(--ink-soft);line-height:1.5;
+  }
+
+  .toast{
+    position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+    background:var(--navy);color:#F4F1EA;padding:10px 18px;border-radius:999px;
+    font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s ease;
+    z-index:50;
+  }
+  .toast.show{opacity:1;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+
+  .invest-card{border:1px solid var(--gold-soft);background:linear-gradient(180deg,#fff,#fbfaf6);}
+  .invest-input{display:flex;gap:10px;align-items:end;margin-top:12px;}
+  .invest-input>div{flex:1;}
+  .invest-input label{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em;}
+  .invest-input input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;font:600 16px 'IBM Plex Mono',monospace;color:var(--ink);background:#fff;}
+  .invest-result{margin-top:14px;display:none;}
+  .invest-summary{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+  .invest-summary .box{padding:10px 12px;background:var(--paper);border-radius:10px;}
+  .invest-summary .lbl{font-size:10px;color:var(--ink-soft);text-transform:uppercase;font-weight:700;}
+  .invest-summary .val{font:600 16px 'IBM Plex Mono',monospace;margin-top:3px;}
+  .invest-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .invest-table th,.invest-table td{padding:9px 6px;border-bottom:1px solid var(--line);text-align:left;}
+  .invest-table th{font-size:10px;color:var(--ink-soft);text-transform:uppercase;}
+  .invest-table td.num{font-family:'IBM Plex Mono',monospace;text-align:right;}
+  .invest-table .go{font-weight:800;color:var(--teal);}
+  .invest-table .zero{color:var(--ink-soft);}
+  .invest-note{margin-top:10px;padding:10px 12px;border-radius:9px;background:var(--paper);font-size:12px;line-height:1.45;color:var(--ink-soft);}
+  .invest-note.warn{background:#fff4e5;color:#8a5b12;}
+  @media(max-width:420px){.invest-input{flex-direction:column;align-items:stretch}.invest-summary{grid-template-columns:1fr 1fr}.invest-table{font-size:11.5px}}
+
+  .invest-row{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:9px;background:var(--paper);}
+  .invest-row .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
+  .invest-row .name{font-weight:700;font-size:14px;line-height:1.35;}
+  .invest-row .amount{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:15px;white-space:nowrap;}
+  .invest-row .reason{font-size:11.5px;color:var(--ink-soft);margin-top:5px;line-height:1.4;}
+  .invest-row .bar{height:7px;background:var(--silver-soft);border-radius:5px;overflow:hidden;margin-top:9px;}
+  .invest-row .bar i{display:block;height:100%;background:var(--teal);border-radius:5px;}
+  .invest-total{background:var(--navy);color:#F4F1EA;border-radius:10px;padding:13px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-weight:700;}
+  .invest-total .num{font-size:16px;}
+
+  .after-table-wrap{overflow-x:auto;margin-top:10px;border:1px solid var(--line);border-radius:10px}
+  .after-table{width:100%;border-collapse:collapse;font-size:11.5px;min-width:520px}
+  .after-table th,.after-table td{padding:8px 7px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+  .after-table th:first-child,.after-table td:first-child{text-align:left}
+  .after-table th{background:#f4f5f3;color:var(--ink-soft);font-weight:700}
+  .after-table tr:last-child td{border-bottom:0}
+  .after-table .under{color:var(--teal);font-weight:700}
+  .after-table .over{color:var(--danger);font-weight:700}
+  .after-table .near-target{color:var(--teal);font-weight:700}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow">Portfolio Ledger</div>
+  <h1>Market Map</h1>
+  <div class="sub">See how your funds spread across Nifty 50, Next 50 &amp; Midcap 250 — and where gold stands against silver.</div>
+</header>
+
+<nav class="tabs">
+  <button class="active" data-tab="funds">My Funds</button>
+  <button data-tab="invest">Where to Invest</button>
+  <button data-tab="gold">Gold vs Silver</button>
+  <button data-tab="help">Help</button>
+</nav>
+
+<main>
+
+  <!-- FUNDS TAB -->
+  <section class="view active" id="view-funds">
+
+    <div class="card" id="portfolio-card" style="display:none;">
+      <h2>Portfolio split</h2>
+      <div class="hint">Combined across every fund you've added below.</div>
+      <div class="stripe-wrap">
+        <div class="stripe" id="portfolio-stripe"></div>
+      </div>
+      <div class="stripe-legend" id="portfolio-legend"></div>
+      <div class="totals-grid" id="portfolio-totals"></div>
+    </div>
+
+    <div class="card" id="target-card" style="display:none;">
+      <h2>Target allocation</h2>
+      <div class="hint">Set the mix you want to hold. The app compares it to what you actually have right now, within your current total amount, and tells you how much to add or reduce in each category to get there.</div>
+
+      <div class="pct-row">
+        <div>
+          <label for="t-n50">Nifty 50 %</label>
+          <input type="number" id="t-n50" placeholder="e.g. 40" min="0" max="100">
+        </div>
+        <div>
+          <label for="t-nx50">Next 50 %</label>
+          <input type="number" id="t-nx50" placeholder="e.g. 30" min="0" max="100">
+        </div>
+        <div>
+          <label for="t-mid">Midcap %</label>
+          <input type="number" id="t-mid" placeholder="e.g. 20" min="0" max="100">
+        </div>
+        <div>
+          <label for="t-small">Smallcap %</label>
+          <input type="number" id="t-small" placeholder="e.g. 10" min="0" max="100">
+        </div>
+      </div>
+      <div class="other-note" id="target-note">Targets add up to 0%</div>
+
+      <table class="target-table" id="target-table" style="display:none;">
+        <thead><tr><th>Category</th><th>Target</th><th>Current</th><th>Adjustment</th></tr></thead>
+        <tbody id="target-table-body"></tbody>
+      </table>
+    </div>
+
+    <div class="card invest-card" id="invest-card" style="display:none;">
+      <h2>Where should I invest?</h2>
+      <div class="hint">Enter the new amount you want to invest. The calculator uses your current portfolio and target percentages above, then directs the new money toward the categories that are underweight.</div>
+      <div class="invest-input">
+        <div>
+          <label for="new-invest-amount">New amount</label>
+          <input id="new-invest-amount" type="number" min="0" step="100" inputmode="decimal" placeholder="e.g. 10000">
+        </div>
+      </div>
+      <div class="invest-result" id="invest-result">
+        <div class="invest-summary">
+          <div class="box"><div class="lbl">Amount to invest</div><div class="val" id="invest-total">₹0</div></div>
+          <div class="box"><div class="lbl">Current portfolio</div><div class="val" id="invest-current-total">₹0</div></div>
+        </div>
+        <table class="invest-table">
+          <thead><tr><th>Category</th><th>Current</th><th>Target</th><th>Invest</th></tr></thead>
+          <tbody id="invest-table-body"></tbody>
+        </table>
+        <div class="invest-note" id="invest-note"></div>
+      </div>
+    </div>
+
+    <div class="card" id="import-card">
+      <h2>Import your holdings</h2>
+      <div class="hint">Upload the Excel (.xlsx) holdings statement from Groww — the app reads the "Scheme Name" and "Current Value" columns straight off it, skips the personal-details/summary rows automatically, and pre-fills a typical allocation % for common fund types. You'll get a chance to review everything before it's added.</div>
+      <button class="ghost" id="import-csv-btn">Upload Excel file (.xlsx)</button>
+      <input type="file" id="import-csv-file" accept=".xlsx,.xls" style="display:none;">
+
+      <div id="import-preview" style="display:none;margin-top:14px;">
+        <div class="hint" id="import-preview-hint"></div>
+        <div id="import-preview-list"></div>
+        <div class="row-2">
+          <button class="primary" id="import-confirm-btn" style="margin-top:0;">Import selected</button>
+          <button class="ghost" id="import-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="form-heading">Add a fund</h2>
+      <div class="hint">Get the Nifty 50 / Next 50 / Midcap 250 % from the fund's factsheet (usually under "portfolio" or "market cap allocation"), then enter it here. Whatever's left over is bucketed as "Other" (large-cap-adjacent, small cap, cash, debt, etc). Picking a fund type below auto-fills a typical starting % — always double check it.</div>
+
+      <label for="f-name">Fund name / type</label>
+      <div class="autocomplete-wrap">
+        <input type="text" id="f-name" autocomplete="off" placeholder="Start typing — Flexicap, Nifty 50, Midcap...">
+        <ul class="autocomplete-list" id="fund-suggestions"></ul>
+      </div>
+
+      <label for="f-amount">Amount (₹)</label>
+      <input type="number" id="f-amount" placeholder="e.g. 50000" min="0">
+
+      <div class="pct-row">
+        <div>
+          <label for="f-n50">Nifty 50 %</label>
+          <input type="number" id="f-n50" placeholder="0" min="0" max="100">
+        </div>
+        <div>
+          <label for="f-nx50">Next 50 %</label>
+          <input type="number" id="f-nx50" placeholder="0" min="0" max="100">
+        </div>
+        <div>
+          <label for="f-mid">Midcap 250 %</label>
+          <input type="number" id="f-mid" placeholder="0" min="0" max="100">
+        </div>
+        <div>
+          <label for="f-small">Smallcap %</label>
+          <input type="number" id="f-small" placeholder="0" min="0" max="100">
+        </div>
+      </div>
+      <div class="other-note" id="other-note">Other / unallocated: 100%</div>
+
+      <button class="primary" id="add-fund-btn">Add fund</button>
+      <button class="ghost" id="cancel-edit-btn" style="display:none;margin-top:8px;">Cancel edit</button>
+    </div>
+
+    <div class="card">
+      <h2>Your funds</h2>
+      <div id="fund-list"><div class="empty">No funds added yet. Add your first one above.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Backup</h2>
+      <div class="hint">Your funds are only kept on this screen. Download a backup file so you don't lose it, and load it back any time — on this phone or another.</div>
+      <div class="row-2">
+        <button class="ghost" id="export-btn">Download backup (.json)</button>
+        <button class="ghost" id="import-btn">Load backup</button>
+      </div>
+      <input type="file" id="import-file" accept=".json" style="display:none;">
+    </div>
+
+  </section>
+
+  <!-- WHERE TO INVEST TAB -->
+  <section class="view" id="view-invest">
+    <div class="card">
+      <h2>Where should I invest?</h2>
+      <div class="hint">Enter new money. The app uses the funds you already hold and their underlying Nifty 50 / Next 50 / Midcap / Smallcap exposure. It recommends only those existing funds — no separate Midcap fund is required.</div>
+      <label for="new-investment">New amount to invest (₹)</label>
+      <input type="number" id="new-investment" min="0" placeholder="e.g. 10000">
+      <div class="hint" style="margin-top:10px;margin-bottom:0;">Your target allocation is taken from the Target Allocation section in My Funds.</div>
+    </div>
+    <div class="card" id="invest-result-card" style="display:none;">
+      <h2>Recommended deployment</h2>
+      <div class="hint" id="invest-summary"></div>
+      <div id="invest-results"></div>
+      <div class="other-note" id="invest-note"></div>
+    </div>
+    <div class="card">
+      <h2>How the recommendation works</h2>
+      <div class="hint">
+        <b>1.</b> It starts with your current portfolio exposure.<br>
+        <b>2.</b> It calculates the effect of putting new money into each fund you already hold.<br>
+        <b>3.</b> It selects the fund mix that moves the overall portfolio closest to your target.<br>
+        <b>4.</b> If a category is underweight but is available only through a fund you already hold (for example Midcap through your Large &amp; Midcap fund), that fund is recommended.<br><br>
+        <b>Important:</b> This calculator does not ask you to buy a new standalone Midcap fund. It works with your existing funds.
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLD/SILVER TAB -->
+  <section class="view" id="view-gold">
+
+    <div class="card">
+      <div class="rate-meta">
+        <span id="rate-source">Loading —</span>
+        <span class="src num" id="rate-date">—</span>
+      </div>
+      <h2>Today's price — Tamil Nadu (Chennai reference)</h2>
+      <div class="price-grid">
+        <div class="price-tile gold-tile">
+          <div class="lbl">Gold (22K) / gram</div>
+          <div class="val num" id="gold-price-display">—</div>
+        </div>
+        <div class="price-tile silver-tile">
+          <div class="lbl">Silver / gram</div>
+          <div class="val num" id="silver-price-display">—</div>
+        </div>
+      </div>
+      <button class="primary" id="refresh-live-btn">↻ Fetch Today’s Price</button>
+    </div>
+
+    <div class="card">
+      <h2>Gold-Silver ratio</h2>
+      <div class="hint">Formula: price of <b>1 gram of gold</b> ÷ price of <b>1 gram of silver</b>, both in rupees — tells you how many grams of silver it takes to buy one gram of gold.</div>
+
+      <div class="ratio-display">
+        <span class="num big" id="ratio-value">—</span>
+        <span class="colon">: 1</span>
+      </div>
+
+      <div class="scale">
+        <div class="marker" id="scale-marker" style="left:0%;"></div>
+      </div>
+      <div class="scale-labels">
+        <span>&lt;50 gold</span>
+        <span>50–80 neutral</span>
+        <span>&gt;80 silver</span>
+      </div>
+
+      <div class="verdict" id="verdict"></div>
+
+      <table class="param-table">
+        <thead><tr><th>Ratio</th><th class="action">Reading</th><th>What it means</th></tr></thead>
+        <tbody id="param-table-body"></tbody>
+      </table>
+
+      <button class="link" id="toggle-update-btn">Enter price manually instead</button>
+
+      <div class="update-form" id="update-form">
+        <label for="g-gold">Gold price — per gram, 22K (₹)</label>
+        <input type="number" id="g-gold" min="0">
+        <label for="g-silver">Silver price — per gram (₹)</label>
+        <input type="number" id="g-silver" min="0">
+        <button class="primary" id="calc-ratio-btn">Use this price</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>About this price</h2>
+      <div class="hint">
+        This card tries to fetch today's <b>22K gold &amp; silver price for Tamil Nadu (Chennai reference) from Goodreturns</b> automatically every time you open the app. When it works, you'll see "🟢 Live" above with a timestamp — genuinely no typing needed.<br><br>
+        Being straightforward about how fragile this is: a single HTML file can't directly read another website (browsers block that for security — it's called CORS), so this goes through a free third-party relay to get around it. That relay, or goodreturns.in changing their page layout, could break this at any time without warning. If that happens, the app falls back automatically to the last price it saw, and you can always tap "Enter price manually instead" to type in today's rate yourself from goodreturns.in, your jeweller, or MCX — that's saved on this device either way.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- HELP TAB -->
+  <section class="view" id="view-help">
+    <div class="card">
+      <h2>How this works</h2>
+      <div class="hint" style="margin-bottom:14px;">
+        <b>My Funds</b> — this app doesn't fetch live fund data. You get the market-cap split (Nifty 50 / Next 50 / Midcap / Smallcap) straight from the fund's own factsheet or the AMC's website, and enter it once per fund. Tap "Edit" on any saved fund to change it later. The app does the multiplication and adds it all up across your holdings, so you can see your true index exposure in one place.
+      </div>
+      <div class="hint" style="margin-bottom:14px;">
+        <b>Target allocation</b> — set the mix you want (e.g. Nifty 50: 40%, Next 50: 30%, Midcap: 20%, Smallcap: 10%). The app compares that to what you actually hold right now — within your current total amount — and shows, category by category, whether you're short and need to add, or overweight and should reduce.
+      </div>
+      <div class="hint" style="margin-bottom:14px;">
+        <b>Import your holdings</b> — upload your Groww Excel (.xlsx) holdings statement and the app automatically finds the real holdings table (skipping the personal-details and summary rows at the top), reads the fund name and <b>current value</b>, and pre-fills a typical allocation % using both the fund name and Groww's own category column. You review every row before anything is added, and can still edit any fund afterward.
+      </div>
+      <div class="hint" style="margin-bottom:14px;">
+        <b>Where to find the %:</b> search "[fund name] factsheet" or "[fund name] portfolio market cap allocation" — every AMC publishes this monthly, usually as Large Cap / Mid Cap / Small Cap weights. Nifty 50 ≈ top 50 companies (large cap), Next 50 ≈ the 51st–100th largest, Midcap 250 ≈ roughly 101st–350th.
+      </div>
+      <div class="hint" style="margin-bottom:14px;">
+        <b>Gold vs Silver</b> — automatically fetches today's 22K gold &amp; silver price for Tamil Nadu (Chennai reference) from Goodreturns each time you open the app, and works out the ratio against the standard bands Indian investors use (below 50 = gold cheap, above 80 = silver cheap). This relies on a third-party relay to get around browser security (CORS), so it's best-effort — if it fails, the app falls back to the last price it saw and you can enter today's rate yourself under "Enter price manually instead," which is saved on this device too. Formula: (gold price per gram) ÷ (silver price per gram). It's a general rule of thumb for comparing relative value, not a prediction or personalised advice.
+      </div>
+      <div class="hint">
+        <b>Your data stays on this device, automatically.</b> Your fund list and the last gold/silver price you entered are saved right in this phone's browser storage — nothing is sent to any server, and you don't need to do anything to save it. Clearing your browser's site data/history will erase it, so use the backup button on the Funds tab if you want a copy you can restore, or move it to another phone.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Add it to your home screen</h2>
+      <div class="hint">
+        Open this app in your phone's browser (Chrome or Safari), then:<br><br>
+        <b>Android (Chrome):</b> tap the ⋮ menu → "Add to Home screen" → Add.<br><br>
+        <b>iPhone (Safari):</b> tap the Share icon → "Add to Home Screen" → Add.<br><br>
+        It'll then sit on your home screen with its own icon and open full-screen like a regular app — no browser bar.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Want to share this app?</h2>
+      <div class="hint">
+        This is a single file — index.html. Anyone can open it by double-tapping it, no install needed, and then add it to their own home screen the same way. To share a real link instead of a file:
+      </div>
+      <div class="hint">
+        1. Create a free GitHub account, make a new repository, and upload this file as <b>index.html</b>.<br>
+        2. In the repository's Settings → Pages, set the source to the main branch.<br>
+        3. GitHub gives you a link like <span class="num">yourname.github.io/reponame</span> — share that with anyone.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="disclaimer">
+  This app is for personal tracking and general education only. It is not investment advice. Fund allocation figures depend entirely on what you enter — double-check against the fund's official factsheet. Gold and silver prices move daily and vary by city and seller; the ratio is a rough historical guide, not a signal to act on.
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var funds = [];
+  var editingId = null;
+  var autoFilledByTemplate = false;
+
+  var STORAGE_FUNDS = 'capsplit_funds_v1';
+  var STORAGE_RATE = 'capsplit_rate_v1';
+  var STORAGE_TARGET = 'capsplit_target_v1';
+
+  function saveFundsToDevice(){
+    try{ localStorage.setItem(STORAGE_FUNDS, JSON.stringify(funds)); }catch(e){}
+  }
+  function loadFundsFromDevice(){
+    try{
+      var raw = localStorage.getItem(STORAGE_FUNDS);
+      if (raw){
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) funds = parsed;
+      }
+    }catch(e){}
+  }
+  function saveRateToDevice(goldG, silverG, dateLabel){
+    try{ localStorage.setItem(STORAGE_RATE, JSON.stringify({ goldG: goldG, silverG: silverG, dateLabel: dateLabel })); }catch(e){}
+  }
+  function loadRateFromDevice(){
+    try{
+      var raw = localStorage.getItem(STORAGE_RATE);
+      if (raw) return JSON.parse(raw);
+    }catch(e){}
+    return null;
+  }
+  function saveTargetToDevice(t){
+    try{ localStorage.setItem(STORAGE_TARGET, JSON.stringify(t)); }catch(e){}
+  }
+  function loadTargetFromDevice(){
+    try{
+      var raw = localStorage.getItem(STORAGE_TARGET);
+      if (raw) return JSON.parse(raw);
+    }catch(e){}
+    return null;
+  }
+
+  // ---------- Tabs ----------
+  var tabButtons = document.querySelectorAll('nav.tabs button');
+  var views = document.querySelectorAll('section.view');
+  tabButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabButtons.forEach(function(b){ b.classList.remove('active'); });
+      views.forEach(function(v){ v.classList.remove('active'); });
+      btn.classList.add('active');
+      var target = document.getElementById('view-' + btn.dataset.tab);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+    });
+  });
+
+  function toast(msg){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 1800);
+  }
+
+  function fmtRupee(n){
+    if (isNaN(n)) n = 0;
+    return '₹' + Math.round(n).toLocaleString('en-IN');
+  }
+
+  // ---------- Fund form: live "other %" note ----------
+  var nameIn = document.getElementById('f-name');
+  var amountIn = document.getElementById('f-amount');
+  var n50In = document.getElementById('f-n50');
+  var nx50In = document.getElementById('f-nx50');
+  var midIn = document.getElementById('f-mid');
+  var smallIn = document.getElementById('f-small');
+  var otherNote = document.getElementById('other-note');
+  var addBtn = document.getElementById('add-fund-btn');
+  var cancelBtn = document.getElementById('cancel-edit-btn');
+  var formHeading = document.getElementById('form-heading');
+
+  function updateOtherNote(){
+    var n50 = parseFloat(n50In.value) || 0;
+    var nx50 = parseFloat(nx50In.value) || 0;
+    var mid = parseFloat(midIn.value) || 0;
+    var small = parseFloat(smallIn.value) || 0;
+    var sum = n50 + nx50 + mid + small;
+    var other = 100 - sum;
+    if (sum > 100){
+      otherNote.textContent = 'These add up to ' + sum + '% — that\'s over 100%. Please recheck.';
+      otherNote.classList.add('warn');
+    } else {
+      otherNote.textContent = 'Other / unallocated: ' + other.toFixed(1) + '%';
+      otherNote.classList.remove('warn');
+    }
+  }
+  [n50In, nx50In, midIn, smallIn].forEach(function(el){
+    el.addEventListener('input', function(){
+      autoFilledByTemplate = false; // a real user keystroke means these are no longer "just a default"
+      updateOtherNote();
+    });
+  });
+
+  function resetForm(){
+    nameIn.value = ''; amountIn.value = '';
+    n50In.value = ''; nx50In.value = ''; midIn.value = ''; smallIn.value = '';
+    autoFilledByTemplate = false;
+    updateOtherNote();
+    editingId = null;
+    addBtn.textContent = 'Add fund';
+    formHeading.textContent = 'Add a fund';
+    cancelBtn.style.display = 'none';
+    document.querySelectorAll('.fund-row').forEach(function(r){ r.classList.remove('editing'); });
+  }
+
+  cancelBtn.addEventListener('click', resetForm);
+
+  // ---------- Add / Save fund ----------
+  addBtn.addEventListener('click', function(){
+    var name = nameIn.value.trim();
+    var amount = parseFloat(amountIn.value);
+    var n50 = parseFloat(n50In.value) || 0;
+    var nx50 = parseFloat(nx50In.value) || 0;
+    var mid = parseFloat(midIn.value) || 0;
+    var small = parseFloat(smallIn.value) || 0;
+
+    if (!name){ toast('Enter a fund name'); return; }
+    if (!amount || amount <= 0){ toast('Enter an amount'); return; }
+    if (n50 + nx50 + mid + small > 100){ toast('Percentages add up to more than 100%'); return; }
+
+    if (editingId){
+      var f = funds.find(function(x){ return x.id === editingId; });
+      if (f){
+        f.name = name; f.amount = amount; f.n50 = n50; f.nx50 = nx50; f.mid = mid; f.small = small;
+      }
+      toast('Fund updated');
+    } else {
+      funds.push({
+        id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
+        name: name, amount: amount, n50: n50, nx50: nx50, mid: mid, small: small
+      });
+      toast('Fund added');
+    }
+
+    resetForm();
+    saveFundsToDevice();
+    renderFunds();
+  });
+
+  function startEdit(id){
+    var f = funds.find(function(x){ return x.id === id; });
+    if (!f) return;
+    editingId = id;
+    nameIn.value = f.name;
+    amountIn.value = f.amount;
+    n50In.value = f.n50;
+    nx50In.value = f.nx50;
+    midIn.value = f.mid;
+    smallIn.value = f.small || 0;
+    updateOtherNote();
+    addBtn.textContent = 'Save changes';
+    formHeading.textContent = 'Edit fund';
+    cancelBtn.style.display = 'block';
+    document.querySelectorAll('.fund-row').forEach(function(r){
+      r.classList.toggle('editing', r.dataset.id === id);
+    });
+    document.getElementById('view-funds').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function fundSplit(f){
+    var small = f.small || 0;
+    var other = Math.max(0, 100 - f.n50 - f.nx50 - f.mid - small);
+    return {
+      n50Amt: f.amount * f.n50 / 100,
+      nx50Amt: f.amount * f.nx50 / 100,
+      midAmt: f.amount * f.mid / 100,
+      smallAmt: f.amount * small / 100,
+      otherAmt: f.amount * other / 100,
+      otherPct: other
+    };
+  }
+
+  function renderFunds(){
+    var list = document.getElementById('fund-list');
+    if (funds.length === 0){
+      list.innerHTML = '<div class="empty">No funds added yet. Add your first one above.</div>';
+      document.getElementById('portfolio-card').style.display = 'none';
+      document.getElementById('target-card').style.display = 'none';
+      return;
+    }
+
+    var html = '';
+    funds.forEach(function(f){
+      var s = fundSplit(f);
+      html += '<div class="fund-row" data-id="' + f.id + '">' +
+        '<div class="top-line">' +
+          '<div><div class="fname">' + escapeHtml(f.name) + '</div>' +
+          '<div class="famt">' + fmtRupee(f.amount) + ' invested</div></div>' +
+          '<div class="actions">' +
+            '<button class="edit-btn" data-id="' + f.id + '">Edit</button>' +
+            '<button class="del" data-id="' + f.id + '">Remove</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="mini-stripe">' +
+          segDiv('n50', f.n50) + segDiv('nx50', f.nx50) + segDiv('mid', f.mid) + segDiv('small', f.small || 0) + segDiv('other', s.otherPct) +
+        '</div>' +
+        '<div class="mini-breakdown">' +
+          '<span>Nifty 50: <b>' + fmtRupee(s.n50Amt) + '</b></span>' +
+          '<span>Next 50: <b>' + fmtRupee(s.nx50Amt) + '</b></span>' +
+          '<span>Midcap: <b>' + fmtRupee(s.midAmt) + '</b></span>' +
+          '<span>Smallcap: <b>' + fmtRupee(s.smallAmt) + '</b></span>' +
+          '<span>Other: <b>' + fmtRupee(s.otherAmt) + '</b></span>' +
+        '</div>' +
+      '</div>';
+    });
+    list.innerHTML = html;
+
+    document.querySelectorAll('.fund-row .del').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        funds = funds.filter(function(f){ return f.id !== btn.dataset.id; });
+        if (editingId === btn.dataset.id) resetForm();
+        saveFundsToDevice();
+        renderFunds();
+        toast('Fund removed');
+      });
+    });
+    document.querySelectorAll('.fund-row .edit-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ startEdit(btn.dataset.id); });
+    });
+
+    renderPortfolio();
+    if (parseFloat(newInvestment && newInvestment.value) > 0) calculateWhereToInvest(parseFloat(newInvestment.value));
+  }
+
+  function segDiv(cls, pct){
+    pct = Math.max(0, pct);
+    return '<div class="seg ' + cls + '" style="width:' + pct + '%;"></div>';
+  }
+
+  function computePortfolioTotals(){
+    var totalAmt = 0, n50Amt = 0, nx50Amt = 0, midAmt = 0, smallAmt = 0, otherAmt = 0;
+    funds.forEach(function(f){
+      var s = fundSplit(f);
+      totalAmt += f.amount;
+      n50Amt += s.n50Amt;
+      nx50Amt += s.nx50Amt;
+      midAmt += s.midAmt;
+      smallAmt += s.smallAmt;
+      otherAmt += s.otherAmt;
+    });
+    return { totalAmt: totalAmt, n50Amt: n50Amt, nx50Amt: nx50Amt, midAmt: midAmt, smallAmt: smallAmt, otherAmt: otherAmt };
+  }
+
+  function renderPortfolio(){
+    var t = computePortfolioTotals();
+    var card = document.getElementById('portfolio-card');
+    if (t.totalAmt <= 0){
+      card.style.display = 'none';
+      document.getElementById('target-card').style.display = 'none';
+      return;
+    }
+    card.style.display = 'block';
+    document.getElementById('target-card').style.display = 'block';
+
+    var pN50 = t.totalAmt ? (t.n50Amt/t.totalAmt*100) : 0;
+    var pNx50 = t.totalAmt ? (t.nx50Amt/t.totalAmt*100) : 0;
+    var pMid = t.totalAmt ? (t.midAmt/t.totalAmt*100) : 0;
+    var pSmall = t.totalAmt ? (t.smallAmt/t.totalAmt*100) : 0;
+    var pOther = t.totalAmt ? (t.otherAmt/t.totalAmt*100) : 0;
+
+    document.getElementById('portfolio-stripe').innerHTML =
+      segDiv('n50', pN50) + segDiv('nx50', pNx50) + segDiv('mid', pMid) + segDiv('small', pSmall) + segDiv('other', pOther);
+
+    document.getElementById('portfolio-legend').innerHTML =
+      '<span class="legend-item"><span class="dot n50"></span>Nifty 50 <b>' + pN50.toFixed(1) + '%</b></span>' +
+      '<span class="legend-item"><span class="dot nx50"></span>Next 50 <b>' + pNx50.toFixed(1) + '%</b></span>' +
+      '<span class="legend-item"><span class="dot mid"></span>Midcap <b>' + pMid.toFixed(1) + '%</b></span>' +
+      '<span class="legend-item"><span class="dot small"></span>Smallcap <b>' + pSmall.toFixed(1) + '%</b></span>' +
+      '<span class="legend-item"><span class="dot other"></span>Other <b>' + pOther.toFixed(1) + '%</b></span>';
+
+    document.getElementById('portfolio-totals').innerHTML =
+      tile('Total amount', fmtRupee(t.totalAmt)) +
+      tile('In Nifty 50', fmtRupee(t.n50Amt)) +
+      tile('In Next 50', fmtRupee(t.nx50Amt)) +
+      tile('In Midcap', fmtRupee(t.midAmt)) +
+      tile('In Smallcap', fmtRupee(t.smallAmt));
+
+    renderTarget();
+    renderInvestCalculator();
+  }
+
+  function tile(lbl, val){
+    return '<div class="tile"><div class="lbl">' + lbl + '</div><div class="val">' + val + '</div></div>';
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+
+  // ---------- New-money allocation calculator ----------
+  var newInvestAmount = document.getElementById('new-invest-amount');
+
+  function renderInvestCalculator(){
+    var card = document.getElementById('invest-card');
+    var result = document.getElementById('invest-result');
+    var amount = parseFloat(newInvestAmount.value) || 0;
+    var t = currentTargets();
+    var targetSum = t.n50 + t.nx50 + t.mid + t.small;
+    var p = computePortfolioTotals();
+
+    card.style.display = p.totalAmt > 0 ? 'block' : 'none';
+    if (amount <= 0 || p.totalAmt <= 0 || Math.abs(targetSum - 100) > 0.05){
+      result.style.display = 'none';
+      return;
+    }
+
+    var rows = [
+      {label:'Nifty 50', key:'n50', target:t.n50, current:p.n50Amt, dot:'n50'},
+      {label:'Next 50', key:'nx50', target:t.nx50, current:p.nx50Amt, dot:'nx50'},
+      {label:'Midcap', key:'mid', target:t.mid, current:p.midAmt, dot:'mid'},
+      {label:'Smallcap', key:'small', target:t.small, current:p.smallAmt, dot:'small'}
+    ];
+
+    // First calculate each category's target gap after adding the new money.
+    // Positive gaps are the categories that need fresh money; negative gaps are already overweight.
+    var finalTotal = p.totalAmt + amount;
+    rows.forEach(function(r){
+      r.gap = (r.target / 100) * finalTotal - r.current;
+      r.invest = Math.max(0, r.gap);
+    });
+
+    var positiveGap = rows.reduce(function(sum,r){ return sum + r.invest; },0);
+
+    // If the entered amount is smaller than the total positive gap, distribute the
+    // available money proportionally to the underweight gaps. This is the best
+    // target-directed allocation possible without selling existing holdings.
+    if (positiveGap > amount + 0.01){
+      rows.forEach(function(r){ r.invest = positiveGap > 0 ? amount * r.invest / positiveGap : 0; });
+    } else if (positiveGap > 0 && positiveGap < amount - 0.01){
+      // Exact target can be reached before using all the money. Put the remainder
+      // into the categories according to their target weights.
+      var remainder = amount - positiveGap;
+      rows.forEach(function(r){ r.invest += remainder * r.target / 100; });
+    }
+
+    document.getElementById('invest-total').textContent = fmtRupee(amount);
+    document.getElementById('invest-current-total').textContent = fmtRupee(p.totalAmt);
+
+    var body = '';
+    rows.forEach(function(r){
+      var currentPct = p.totalAmt ? r.current / p.totalAmt * 100 : 0;
+      body += '<tr>' +
+        '<td><span class="dot '+r.dot+'"></span> '+r.label+'</td>' +
+        '<td class="num">'+currentPct.toFixed(1)+'%</td>' +
+        '<td class="num">'+r.target.toFixed(1)+'%</td>' +
+        '<td class="num '+(r.invest > 0.5 ? 'go' : 'zero')+'">'+(r.invest > 0.5 ? fmtRupee(r.invest) : '₹0')+'</td>' +
+      '</tr>';
+    });
+    document.getElementById('invest-table-body').innerHTML = body;
+
+    var note = document.getElementById('invest-note');
+    note.classList.remove('warn');
+    if (positiveGap > amount + 0.01){
+      note.classList.add('warn');
+      note.textContent = 'This amount is not enough to reach the target exactly without selling. The calculator therefore directs the new money proportionally toward the underweight categories.';
+    } else if (positiveGap < amount - 0.01){
+      note.textContent = 'The target can be reached before using the full amount. The remaining money is distributed according to the target weights.';
+    } else {
+      note.textContent = 'This allocation is designed to move the portfolio as close as possible to your target using only the new money — no selling required.';
+    }
+    result.style.display = 'block';
+  }
+
+  newInvestAmount.addEventListener('input', renderInvestCalculator);
+
+  // ---------- Target allocation ----------
+  var tN50 = document.getElementById('t-n50');
+  var tNx50 = document.getElementById('t-nx50');
+  var tMid = document.getElementById('t-mid');
+  var tSmall = document.getElementById('t-small');
+  var targetNote = document.getElementById('target-note');
+
+  function currentTargets(){
+    return {
+      n50: parseFloat(tN50.value) || 0,
+      nx50: parseFloat(tNx50.value) || 0,
+      mid: parseFloat(tMid.value) || 0,
+      small: parseFloat(tSmall.value) || 0
+    };
+  }
+
+  function updateTargetNote(){
+    var t = currentTargets();
+    var sum = t.n50 + t.nx50 + t.mid + t.small;
+    if (sum === 0){
+      targetNote.textContent = 'Enter your desired % for each category — they should add up to 100%.';
+      targetNote.classList.remove('warn');
+    } else if (Math.abs(sum - 100) > 0.05){
+      targetNote.textContent = 'Targets add up to ' + sum.toFixed(1) + '% — adjust so they total 100%.';
+      targetNote.classList.add('warn');
+    } else {
+      targetNote.textContent = 'Targets add up to 100%. Looks good.';
+      targetNote.classList.remove('warn');
+    }
+  }
+
+  function adjustmentCell(diff){
+    if (Math.abs(diff) < 1){
+      return '<span class="adj-ok">On target</span>';
+    } else if (diff > 0){
+      return '<span class="adj-add">Add ' + fmtRupee(diff) + '</span>';
+    } else {
+      return '<span class="adj-remove">Reduce ' + fmtRupee(Math.abs(diff)) + '</span>';
+    }
+  }
+
+  function renderTarget(){
+    updateTargetNote();
+    var t = currentTargets();
+    var sum = t.n50 + t.nx50 + t.mid + t.small;
+    var table = document.getElementById('target-table');
+    if (sum === 0){ table.style.display = 'none'; return; }
+
+    var p = computePortfolioTotals();
+    if (p.totalAmt <= 0){ table.style.display = 'none'; return; }
+
+    var rows = [
+      { label:'Nifty 50', dot:'n50', targetPct: t.n50, currentAmt: p.n50Amt },
+      { label:'Next 50', dot:'nx50', targetPct: t.nx50, currentAmt: p.nx50Amt },
+      { label:'Midcap', dot:'mid', targetPct: t.mid, currentAmt: p.midAmt },
+      { label:'Smallcap', dot:'small', targetPct: t.small, currentAmt: p.smallAmt }
+    ];
+    if (p.otherAmt > 0){
+      rows.push({ label:'Other', dot:'other', targetPct: 0, currentAmt: p.otherAmt });
+    }
+
+    var html = '';
+    rows.forEach(function(r){
+      var targetAmt = p.totalAmt * r.targetPct / 100;
+      var currentPct = p.totalAmt ? (r.currentAmt / p.totalAmt * 100) : 0;
+      var diff = targetAmt - r.currentAmt;
+      html += '<tr>' +
+        '<td class="cat"><span class="dot ' + r.dot + '"></span>' + r.label + '</td>' +
+        '<td class="num">' + r.targetPct.toFixed(0) + '%<br>' + fmtRupee(targetAmt) + '</td>' +
+        '<td class="num">' + currentPct.toFixed(1) + '%<br>' + fmtRupee(r.currentAmt) + '</td>' +
+        '<td>' + adjustmentCell(diff) + '</td>' +
+      '</tr>';
+    });
+    document.getElementById('target-table-body').innerHTML = html;
+    table.style.display = sum > 0 ? 'table' : 'none';
+  }
+
+  [tN50, tNx50, tMid, tSmall].forEach(function(el){
+    el.addEventListener('input', function(){
+      renderTarget();
+      renderInvestCalculator();
+      saveTargetToDevice(currentTargets());
+    });
+  });
+
+
+  // ---------- Where to Invest ----------
+  var newInvestment = document.getElementById('new-investment');
+  var investCard = document.getElementById('invest-result-card');
+  var investResults = document.getElementById('invest-results');
+  var investSummary = document.getElementById('invest-summary');
+  var investNote = document.getElementById('invest-note');
+
+  function targetReady(){
+    var t=currentTargets();
+    return Math.abs(t.n50+t.nx50+t.mid+t.small-100)<0.05;
+  }
+
+  // Finds the best allocation across the user's existing funds.
+  // Objective: minimize squared percentage error from target after the new money is invested.
+  // A small diversification penalty prevents unnecessary concentration when two funds are similarly useful.
+  function calculateWhereToInvest(amount){
+    if (!amount || amount<=0){ investCard.style.display='none'; return; }
+    var t=currentTargets();
+    var p=computePortfolioTotals();
+    if (p.totalAmt<=0){
+      investCard.style.display='block';
+      investSummary.textContent='Add your existing funds first. The calculator needs your current holdings to know which fund can move you toward the target.';
+      investResults.innerHTML=''; investNote.textContent=''; return;
+    }
+    if (!targetReady()){
+      investCard.style.display='block';
+      investSummary.textContent='Set Nifty 50, Next 50, Midcap and Smallcap targets so they total 100%. The recommendation will then use your existing funds.';
+      investResults.innerHTML=''; investNote.textContent=''; return;
+    }
+
+    var candidates=funds.map(function(f){
+      var sp=fundSplit(f);
+      return {f:f, v:[sp.n50Amt/f.amount,sp.nx50Amt/f.amount,sp.midAmt/f.amount,sp.smallAmt/f.amount]};
+    }).filter(function(x){return x.f.amount>0;});
+
+    if (!candidates.length){ investCard.style.display='none'; return; }
+
+    // Coordinate-descent optimizer over fund weights. This is intentionally simple and robust for a small personal portfolio.
+    var weights=candidates.map(function(){return 1/candidates.length;});
+    function score(ws){
+      var nv=p.totalAmt+amount;
+      var cats=[p.n50Amt,p.nx50Amt,p.midAmt,p.smallAmt];
+      for(var k=0;k<4;k++){
+        var add=0;
+        candidates.forEach(function(c,i){add += amount*ws[i]*c.v[k];});
+        cats[k]+=add;
+      }
+      var targets=[t.n50,t.nx50,t.mid,t.small];
+      var sc=0;
+      for(var k=0;k<4;k++){
+        var actual=cats[k]/nv*100;
+        sc += Math.pow(actual-targets[k],2);
+      }
+      // Mild penalty for using too many funds / concentrating everything in a redundant fund.
+      var nonzero=ws.filter(function(x){return x>0.001;}).length;
+      sc += nonzero*0.000001;
+      return sc;
+    }
+    // Start from equal split, then repeatedly transfer money between funds when it improves the result.
+    for(var pass=0;pass<120;pass++){
+      var improved=false;
+      for(var i=0;i<candidates.length;i++){
+        for(var j=0;j<candidates.length;j++){
+          if(i===j || weights[i]<0.00001) continue;
+          var step=Math.min(weights[i],0.05);
+          var trial=weights.slice(); trial[i]-=step; trial[j]+=step;
+          if(score(trial)+1e-9<score(weights)){weights=trial; improved=true;}
+        }
+      }
+      if(!improved) break;
+    }
+    // Also test each single existing fund and keep the best simple solution if it is materially better.
+    var best=weights.slice(), bestScore=score(best);
+    candidates.forEach(function(c,idx){
+      var one=weights.map(function(){return 0;}); one[idx]=1;
+      var sc=score(one); if(sc<bestScore){best=one;bestScore=sc;}
+    });
+
+    // Clean tiny weights and normalize.
+    var sum=best.reduce(function(a,b){return a+b;},0);
+    best=best.map(function(x){return x/sum;});
+    var rows=[];
+    candidates.forEach(function(c,i){
+      var a=amount*best[i];
+      if(a>1) rows.push({name:c.f.name,amount:a,pct:best[i]*100,v:c.v});
+    });
+    rows.sort(function(a,b){return b.amount-a.amount;});
+    var roundedTotal=rows.reduce(function(a,r){return a+Math.round(r.amount);},0);
+    if(rows.length && roundedTotal!==Math.round(amount)) rows[0].amount += Math.round(amount)-roundedTotal;
+
+    var nv=p.totalAmt+amount;
+    var cats=[p.n50Amt,p.nx50Amt,p.midAmt,p.smallAmt];
+    rows.forEach(function(r){
+      var c=candidates.find(function(x){return x.f.name===r.name;});
+      for(var k=0;k<4;k++) cats[k]+=r.amount*c.v[k];
+    });
+    var labels=['Nifty 50','Next 50','Midcap','Smallcap'], targets=[t.n50,t.nx50,t.mid,t.small];
+    var after=targets.map(function(_,k){return cats[k]/nv*100;});
+    var error=after.reduce(function(a,x,k){return a+Math.abs(x-targets[k]);},0);
+
+    investCard.style.display='block';
+    investSummary.innerHTML='New money: <b>'+fmtRupee(amount)+'</b>. Using only the funds already in your portfolio, this mix gets the resulting portfolio as close as possible to your target allocation.';
+    investResults.innerHTML=rows.map(function(r){
+      var exposure=[];
+      if(r.v[0]>0.001) exposure.push('Nifty 50 '+(r.v[0]*100).toFixed(0)+'%');
+      if(r.v[1]>0.001) exposure.push('Next 50 '+(r.v[1]*100).toFixed(0)+'%');
+      if(r.v[2]>0.001) exposure.push('Midcap '+(r.v[2]*100).toFixed(0)+'%');
+      if(r.v[3]>0.001) exposure.push('Smallcap '+(r.v[3]*100).toFixed(0)+'%');
+      return '<div class="invest-row"><div class="top"><div class="name">'+escapeHtml(r.name)+'</div><div class="amount">'+fmtRupee(r.amount)+'</div></div><div class="reason">'+exposure.join(' · ')+'</div><div class="bar"><i style="width:'+Math.min(100,r.pct)+'%"></i></div></div>';
+    }).join('')+
+      '<div class="invest-total"><span>Total new investment</span><span class="num">'+fmtRupee(amount)+'</span></div>';
+    var afterRows = labels.map(function(label,k){
+      var currentPct = p.totalAmt ? (k===0?p.n50Amt:k===1?p.nx50Amt:k===2?p.midAmt:p.smallAmt) / p.totalAmt * 100 : 0;
+      var targetPct = targets[k];
+      var addedPct = after[k] - currentPct;
+      var cls = Math.abs(after[k]-targetPct) < 0.15 ? 'near-target' : (after[k] < targetPct ? 'under' : 'over');
+      return '<tr><td>'+label+'</td><td class="num">'+currentPct.toFixed(1)+'%</td><td class="num">'+addedPct.toFixed(1)+'%</td><td class="num"><b>'+after[k].toFixed(1)+'%</b></td><td class="num">'+targetPct.toFixed(1)+'%</td><td class="'+cls+'">'+(after[k]-targetPct>=0?'+':'')+(after[k]-targetPct).toFixed(1)+'%</td></tr>';
+    }).join('');
+    investNote.innerHTML='<b>Portfolio allocation after investing '+fmtRupee(amount)+':</b><div class="after-table-wrap"><table class="after-table"><thead><tr><th>Category</th><th>Now</th><th>Added</th><th>After</th><th>Target</th><th>Gap</th></tr></thead><tbody>'+afterRows+'</tbody></table></div><div class="hint" style="margin:10px 0 0;">The <b>After</b> column is your expected total portfolio percentage immediately after investing the recommended amount.</div>';
+  }
+
+  newInvestment.addEventListener('input',function(){calculateWhereToInvest(parseFloat(newInvestment.value)||0);});
+  [tN50,tNx50,tMid,tSmall].forEach(function(el){el.addEventListener('input',function(){if(parseFloat(newInvestment.value)>0) calculateWhereToInvest(parseFloat(newInvestment.value));});});
+
+  // ---------- Backup / restore ----------
+  document.getElementById('export-btn').addEventListener('click', function(){
+    if (funds.length === 0){ toast('No funds to back up yet'); return; }
+    var blob = new Blob([JSON.stringify({ funds: funds }, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'fund-split-backup.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast('Backup downloaded');
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+  document.getElementById('import-file').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(evt){
+      try{
+        var data = JSON.parse(evt.target.result);
+        if (data && Array.isArray(data.funds)){
+          funds = data.funds;
+          saveFundsToDevice();
+          renderFunds();
+          toast('Backup loaded');
+        } else {
+          toast('That file doesn\'t look right');
+        }
+      }catch(err){
+        toast('Couldn\'t read that file');
+      }
+      e.target.value = '';
+    };
+    reader.readAsText(file);
+  });
+
+  // ---------- Gold / Silver price (Tamil Nadu / Chennai reference, via Goodreturns) ----------
+  // Fallback snapshot used only if live fetch fails and nothing is saved yet.
+  var DEFAULT_GOLD_G = 14270;   // 22K, ₹ per gram — verified 17 Aug 2026
+  var DEFAULT_SILVER_G = 255;   // ₹ per gram
+  var DEFAULT_RATE_DATE = '17 Aug 2026 (verified reference)';
+
+  var GOLD_URL = 'https://www.goodreturns.in/gold-rates/chennai.html';
+  var SILVER_URL = 'https://www.goodreturns.in/silver-rates/chennai.html';
+  // Primary relay for public Goodreturns pages.
+  var CORS_PROXIES = [
+    function(u){ return 'https://r.jina.ai/http://' + u.replace(/^https?:\/\//,''); },
+    function(u){ return 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u); }
+  ];
+
+  var goldIn = document.getElementById('g-gold');
+  var silverIn = document.getElementById('g-silver');
+
+  var PARAMS = [
+    { lo: 0,   hi: 50,  label: 'Below 50',   action: 'Favor Gold',    note: 'Gold is historically inexpensive vs silver.' },
+    { lo: 50,  hi: 80,  label: '50 – 80',    action: 'Neutral',       note: 'Typical band — no strong lean either way.' },
+    { lo: 80,  hi: 999, label: 'Above 80',   action: 'Favor Silver',  note: 'It takes unusually more silver to match gold.' }
+  ];
+
+  function renderParamTable(ratio){
+    var body = document.getElementById('param-table-body');
+    var html = '';
+    PARAMS.forEach(function(p){
+      var isCurrent = ratio >= p.lo && ratio < p.hi;
+      html += '<tr class="' + (isCurrent ? 'current' : '') + '">' +
+        '<td class="num">' + p.label + '</td>' +
+        '<td class="action">' + p.action + '</td>' +
+        '<td>' + p.note + '</td>' +
+      '</tr>';
+    });
+    body.innerHTML = html;
+  }
+
+  function showPrices(goldG, silverG, sourceHtml, dateLabel){
+    document.getElementById('gold-price-display').textContent = fmtRupee(goldG);
+    document.getElementById('silver-price-display').textContent = fmtRupee(silverG);
+    document.getElementById('rate-source').innerHTML = sourceHtml;
+    document.getElementById('rate-date').textContent = dateLabel;
+
+    var ratio = goldG / silverG;
+    document.getElementById('ratio-value').textContent = ratio.toFixed(1);
+
+    var pct = ((ratio - 30) / (110 - 30)) * 100;
+    pct = Math.max(1, Math.min(99, pct));
+    document.getElementById('scale-marker').style.left = pct + '%';
+
+    var verdict = document.getElementById('verdict');
+    verdict.className = 'verdict';
+    if (ratio < 50){
+      verdict.classList.add('gold-lean');
+      verdict.innerHTML = '<b>Gold looks relatively cheap — lean toward gold</b>Below 50, gold is historically inexpensive versus silver.';
+    } else if (ratio > 80){
+      verdict.classList.add('silver-lean');
+      verdict.innerHTML = '<b>Silver looks relatively cheap — lean toward silver</b>Above 80, it takes an unusually large amount of silver to match one gram of gold.';
+    } else {
+      verdict.classList.add('neutral');
+      verdict.innerHTML = '<b>Fairly balanced — either works</b>The ratio sits in its typical 50–80 band. Many investors would just split a new purchase.';
+    }
+
+    renderParamTable(ratio);
+  }
+
+  function showManualEntry(goldG, silverG, dateLabel){
+    showPrices(goldG, silverG, '<span class="stale-dot">Your entry</span>', 'as of ' + dateLabel);
+  }
+
+  // Strips tags so matching doesn't depend on exact HTML structure, then looks for
+  // goodreturns.in's fixed phrasing around the price.
+  function extractGoodreturnsPrice(html, metal){
+    var text = html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ');
+    var m;
+    if (metal === 'gold'){
+      m = text.match(/₹\s*([\d,]+(?:\.\d+)?)\s*per gram for 22 karat gold/i);
+      if (!m) m = text.match(/22K\s*Gold\s*\/g\s*₹\s*([\d,]+(?:\.\d+)?)/i);
+    } else {
+      m = text.match(/price of silver in Chennai today is ₹\s*([\d,]+(?:\.\d+)?)\s*per gram/i);
+      if (!m) m = text.match(/Silver\s*\/g\s*₹\s*([\d,]+(?:\.\d+)?)/i);
+    }
+    if (!m) return null;
+    var val = parseFloat(m[1].replace(/,/g, ''));
+    return val > 0 ? val : null;
+  }
+
+  function fetchViaProxies(targetUrl, metal){
+    var attempt = function(i){
+      if (i >= CORS_PROXIES.length) return Promise.reject(new Error('all proxies failed'));
+      var proxyUrl = CORS_PROXIES[i](targetUrl);
+      return fetch(proxyUrl).then(function(r){
+        if (!r.ok) throw new Error('bad response');
+        return r.text();
+      }).then(function(html){
+        var price = extractGoodreturnsPrice(html, metal);
+        if (!price) throw new Error('price not found');
+        return price;
+      }).catch(function(){
+        return attempt(i + 1);
+      });
+    };
+    return attempt(0);
+  }
+
+  function fetchLivePrices(){
+    document.getElementById('rate-source').innerHTML = '<span class="stale-dot">Checking today\'s price…</span>';
+    Promise.all([
+      fetchViaProxies(GOLD_URL, 'gold'),
+      fetchViaProxies(SILVER_URL, 'silver')
+    ]).then(function(results){
+      var goldG = results[0], silverG = results[1];
+      var now = new Date();
+      var timeLabel = now.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' }) +
+        ' · ' + now.toLocaleDateString('en-IN', { day:'2-digit', month:'short' });
+      showPrices(goldG, silverG, '<span class="live-dot">● Live — Tamil Nadu (Chennai reference)</span>', timeLabel);
+      saveLivePriceToDevice(goldG, silverG, timeLabel);
+    }).catch(function(){
+      document.getElementById('rate-source').innerHTML = '<span class="stale-dot">Update failed — showing last verified price</span>';
+      var cachedLive = loadLivePriceFromDevice();
+      if (cachedLive){
+        showPrices(cachedLive.goldG, cachedLive.silverG, '<span class="stale-dot">Last fetched ' + cachedLive.timeLabel + ' (offline now)</span>', cachedLive.timeLabel);
+      } else {
+        var savedRate = loadRateFromDevice();
+        if (savedRate && savedRate.goldG && savedRate.silverG){
+          showManualEntry(savedRate.goldG, savedRate.silverG, savedRate.dateLabel);
+        } else {
+          showManualEntry(DEFAULT_GOLD_G, DEFAULT_SILVER_G, DEFAULT_RATE_DATE);
+        }
+      }
+    });
+  }
+
+  function saveLivePriceToDevice(goldG, silverG, timeLabel){
+    try{ localStorage.setItem('capsplit_live_price_v1', JSON.stringify({ goldG: goldG, silverG: silverG, timeLabel: timeLabel })); }catch(e){}
+  }
+  function loadLivePriceFromDevice(){
+    try{
+      var raw = localStorage.getItem('capsplit_live_price_v1');
+      if (raw) return JSON.parse(raw);
+    }catch(e){}
+    return null;
+  }
+
+  document.getElementById('refresh-live-btn').addEventListener('click', function(){
+    fetchLivePrices();
+  });
+
+  document.getElementById('toggle-update-btn').addEventListener('click', function(){
+    var form = document.getElementById('update-form');
+    form.classList.toggle('open');
+    if (form.classList.contains('open') && !goldIn.value){
+      var savedRate = loadRateFromDevice();
+      goldIn.value = (savedRate && savedRate.goldG) || DEFAULT_GOLD_G;
+      silverIn.value = (savedRate && savedRate.silverG) || DEFAULT_SILVER_G;
+    }
+  });
+
+  document.getElementById('calc-ratio-btn').addEventListener('click', function(){
+    var goldG = parseFloat(goldIn.value);
+    var silverG = parseFloat(silverIn.value);
+    if (!goldG || goldG <= 0 || !silverG || silverG <= 0){
+      toast('Enter both prices');
+      return;
+    }
+    var today = new Date();
+    var label = today.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+    showManualEntry(goldG, silverG, label);
+    saveRateToDevice(goldG, silverG, label);
+    toast('Using your entered price');
+  });
+
+  // ---------- Typical allocation templates ----------
+  function guessTemplate(name){
+    var n = (name || '').toLowerCase();
+    // Fund names write these compound terms with or without a space ("Mid Cap" vs "Midcap") —
+    // normalize to one form so matching doesn't depend on which style the AMC used.
+    n = n.replace(/next\s*50/g, 'next50')
+         .replace(/nifty\s*50/g, 'nifty50')
+         .replace(/mid\s*cap/g, 'midcap')
+         .replace(/small\s*cap/g, 'smallcap')
+         .replace(/large\s*cap/g, 'largecap')
+         .replace(/multi\s*cap/g, 'multicap')
+         .replace(/flexi\s*cap/g, 'flexicap');
+
+    if (n.indexOf('next50') !== -1){
+      return { n50:0, nx50:100, mid:0, small:0, label: 'Nifty Next 50 — 100% Next 50' };
+    }
+    if (n.indexOf('nifty50') !== -1){
+      return { n50:100, nx50:0, mid:0, small:0, label: 'Nifty 50 — 100% Nifty 50' };
+    }
+    if (n.indexOf('large') !== -1 && n.indexOf('midcap') !== -1){
+      return { n50:42, nx50:8, mid:50, small:0, label: 'Large & Midcap — fixed default: Nifty 50 42% / Next 50 8% / Midcap 50%' };
+    }
+    if (n.indexOf('midcap') !== -1){
+      return { n50:0, nx50:0, mid:100, small:0, label: 'Midcap / Midcap 150 — 100% Midcap' };
+    }
+    if (n.indexOf('multicap') !== -1){
+      return { n50:25, nx50:0, mid:25, small:25, label: 'Multicap — SEBI mandatory minimum: 25% each of large / mid / small cap' };
+    }
+    if (n.indexOf('smallcap') !== -1){
+      return { n50:0, nx50:0, mid:0, small:100, label: 'Smallcap / Smallcap 250 — 100% Smallcap' };
+    }
+    if (n.indexOf('largecap') !== -1){
+      return { n50:90, nx50:10, mid:0, small:0, label: 'Large cap — rough starting point, please verify against factsheet' };
+    }
+    if (n.indexOf('sensex') !== -1){
+      return { n50:100, nx50:0, mid:0, small:0, label: 'Sensex index — tracks large caps similarly to Nifty 50, treated as 100% here' };
+    }
+    if (n.indexOf('flexicap') !== -1){
+      return { n50:45, nx50:15, mid:20, small:10, label: 'Flexicap — very approximate, allocations vary widely fund to fund, please verify' };
+    }
+    if (n.indexOf('elss') !== -1 || n.indexOf('tax saver') !== -1){
+      return { n50:50, nx50:15, mid:20, small:10, label: 'ELSS — approximate, verify against factsheet' };
+    }
+    if (n.indexOf('value') !== -1 || n.indexOf('contra') !== -1){
+      return { n50:45, nx50:15, mid:25, small:10, label: 'Value/Contra — approximate, verify against factsheet' };
+    }
+    if (n.indexOf('focused') !== -1){
+      return { n50:55, nx50:15, mid:20, small:5, label: 'Focused — approximate, concentrated funds vary a lot, verify' };
+    }
+    if (n.indexOf('multi asset') !== -1){
+      return { n50:40, nx50:10, mid:10, small:5, label: 'Multi Asset — equity portion only (rest is debt/gold), verify' };
+    }
+    if (n.indexOf('balanced advantage') !== -1 || n.indexOf('hybrid') !== -1){
+      return { n50:35, nx50:10, mid:10, small:5, label: 'Hybrid/Balanced Advantage — equity portion only (rest is debt), verify' };
+    }
+    if (n.indexOf('sectoral') !== -1 || n.indexOf('thematic') !== -1){
+      return { n50:30, nx50:10, mid:30, small:20, label: 'Sectoral/Thematic — no reliable cap pattern, this is a rough guess only, verify' };
+    }
+    if (n.indexOf('gold') !== -1 || n.indexOf('silver') !== -1 || n.indexOf('commodit') !== -1 || n.indexOf('debt') !== -1 || n.indexOf('liquid') !== -1 || n.indexOf('bond') !== -1){
+      return { n50:0, nx50:0, mid:0, small:0, label: 'Not an equity market-cap holding — leave at 0% here' };
+    }
+    return null;
+  }
+
+  function maybeApplyTemplate(){
+    var fieldsHaveValue = n50In.value || nx50In.value || midIn.value || smallIn.value;
+    // Only skip if something is filled in AND the user typed it themselves — an
+    // earlier auto-fill left over from a previous fund name is safe to replace.
+    if (fieldsHaveValue && !autoFilledByTemplate) return;
+    var t = guessTemplate(nameIn.value);
+    if (t){
+      n50In.value = t.n50; nx50In.value = t.nx50; midIn.value = t.mid; smallIn.value = t.small;
+      autoFilledByTemplate = true;
+      updateOtherNote();
+      toast('Typical allocation pre-filled — check & correct if needed');
+    } else if (fieldsHaveValue && autoFilledByTemplate){
+      // Name no longer matches any template — clear the stale auto-filled numbers
+      // rather than leaving the previous fund's percentages sitting there.
+      n50In.value = ''; nx50In.value = ''; midIn.value = ''; smallIn.value = '';
+      autoFilledByTemplate = false;
+      updateOtherNote();
+    }
+  }
+
+  // ---------- CSV import ----------
+  function parseCSVLine(line){
+    var result = [], cur = '', inQuotes = false;
+    for (var i = 0; i < line.length; i++){
+      var c = line[i];
+      if (c === '"'){
+        if (inQuotes && line[i+1] === '"'){ cur += '"'; i++; }
+        else inQuotes = !inQuotes;
+      } else if (c === ',' && !inQuotes){
+        result.push(cur); cur = '';
+      } else {
+        cur += c;
+      }
+    }
+    result.push(cur);
+    return result;
+  }
+
+  function parseCSV(text){
+    var lines = text.split(/\r\n|\n|\r/).filter(function(l){ return l.trim().length > 0; });
+    return lines.map(parseCSVLine);
+  }
+
+  function guessColumns(header){
+    var nameIdx = -1, amountIdx = -1, investedIdx = -1, currentIdx = -1, catIdx = -1, subCatIdx = -1;
+    header.forEach(function(h, i){
+      var l = (h || '').toLowerCase();
+      if (nameIdx === -1 && (l.indexOf('fund') !== -1 || l.indexOf('scheme') !== -1 || l.indexOf('instrument') !== -1 ||
+          l.indexOf('security') !== -1 || l.indexOf('particulars') !== -1 || l.indexOf('holding') !== -1 || l.indexOf('name') !== -1)) nameIdx = i;
+      if (l.indexOf('invested') !== -1 || l.indexOf('purchase value') !== -1 || l.indexOf('buy value') !== -1 || l.indexOf('principal') !== -1) investedIdx = i;
+      if (l.indexOf('current') !== -1 && l.indexOf('value') !== -1) currentIdx = i;
+      if (amountIdx === -1 && (l.indexOf('amount') !== -1 || l.indexOf('value') !== -1 || l.indexOf('cost') !== -1)) amountIdx = i;
+      if (l.indexOf('sub-category') !== -1 || l.indexOf('sub category') !== -1 || l.indexOf('subcategory') !== -1) subCatIdx = i;
+      else if (catIdx === -1 && l.indexOf('category') !== -1) catIdx = i;
+    });
+    if (currentIdx !== -1) amountIdx = currentIdx;
+    else if (investedIdx !== -1) amountIdx = investedIdx;
+    return { nameIdx: nameIdx, amountIdx: amountIdx, catIdx: subCatIdx !== -1 ? subCatIdx : catIdx };
+  }
+
+  var pendingImport = [];
+
+  function showImportPreview(rows){
+    pendingImport = rows;
+    var listEl = document.getElementById('import-preview-list');
+    var html = '';
+    rows.forEach(function(r, idx){
+      var t = guessTemplate(r.templateText || r.name);
+      html += '<div class="import-row">' +
+        '<div class="row-top">' +
+          '<input type="checkbox" class="imp-check" data-idx="' + idx + '" checked>' +
+          '<input type="text" class="imp-name" data-idx="' + idx + '" value="' + escapeHtml(r.name) + '">' +
+        '</div>' +
+        '<div class="row-bottom">' +
+          '<input type="number" class="imp-amount amt-input num" data-idx="' + idx + '" value="' + r.amount + '">' +
+        '</div>' +
+        '<div class="guess-note">' + (t ? t.label : 'No default match — set % manually after import') + '</div>' +
+      '</div>';
+    });
+    listEl.innerHTML = html;
+    document.getElementById('import-preview-hint').textContent =
+      'Found ' + rows.length + ' fund(s). Review names & amounts, uncheck any you don\'t want, then import.';
+    document.getElementById('import-preview').style.display = 'block';
+  }
+
+  document.getElementById('import-csv-btn').addEventListener('click', function(){
+    document.getElementById('import-csv-file').click();
+  });
+
+  // Scans every row of the sheet for the real header row (statements often have several
+  // rows of account/summary info before the actual holdings table starts), then reads
+  // data rows below it until they stop looking like data.
+  function extractRows(rows){
+    if (!rows || rows.length < 2) return null;
+    var cols = null, headerRowIdx = -1;
+    for (var h = 0; h < rows.length; h++){
+      var candidate = guessColumns(rows[h]);
+      if (candidate.nameIdx !== -1 && candidate.amountIdx !== -1){
+        cols = candidate;
+        headerRowIdx = h;
+        break;
+      }
+    }
+    if (!cols) return null;
+
+    var parsed = [];
+    for (var i = headerRowIdx + 1; i < rows.length; i++){
+      var row = rows[i];
+      var name = String(row[cols.nameIdx] || '').trim();
+      var amtRaw = String(row[cols.amountIdx] || '').replace(/[₹,\s]/g, '');
+      var amt = parseFloat(amtRaw);
+      var cat = cols.catIdx !== -1 ? String(row[cols.catIdx] || '').trim() : '';
+      if (name && amt && amt > 0){
+        parsed.push({ name: name, amount: amt, templateText: (name + ' ' + cat).trim() });
+      }
+    }
+    return parsed.length ? parsed : null;
+  }
+
+  function processRows(rows, input){
+    var parsed = extractRows(rows);
+    if (!parsed){
+      toast('Could not find fund name / amount columns in that file');
+      input.value = '';
+      return;
+    }
+    showImportPreview(parsed);
+    input.value = '';
+  }
+
+  // Some "export to Excel" buttons actually save an HTML table with a .xls/.xlsx name.
+  function parseHtmlTable(text){
+    try{
+      var doc = new DOMParser().parseFromString(text, 'text/html');
+      var table = doc.querySelector('table');
+      if (!table) return null;
+      var rows = [];
+      table.querySelectorAll('tr').forEach(function(tr){
+        var cells = [];
+        tr.querySelectorAll('th,td').forEach(function(cell){ cells.push(cell.textContent.trim()); });
+        if (cells.length) rows.push(cells);
+      });
+      return rows.length ? rows : null;
+    }catch(e){ return null; }
+  }
+
+  // Reads a real .xlsx file using only native browser APIs — no external library.
+  // An .xlsx is a ZIP archive of XML files; this reads the ZIP central directory,
+  // inflates the worksheet/sharedStrings entries with the browser's built-in
+  // DecompressionStream, and pulls cell values out of the XML with regex.
+  async function parseXlsxArrayBuffer(arrayBuffer){
+    var buf = new Uint8Array(arrayBuffer);
+    var dv = new DataView(arrayBuffer);
+    var textDecoder = new TextDecoder('utf-8');
+
+    function findEOCD(){
+      for (var i = buf.length - 22; i >= 0; i--){
+        if (dv.getUint32(i, true) === 0x06054b50) return i;
+      }
+      throw new Error('not a zip/xlsx file');
+    }
+    var eocdOff = findEOCD();
+    var cdOffset = dv.getUint32(eocdOff + 16, true);
+    var cdCount = dv.getUint16(eocdOff + 10, true);
+
+    var entries = {};
+    var p = cdOffset;
+    for (var i = 0; i < cdCount; i++){
+      if (dv.getUint32(p, true) !== 0x02014b50) throw new Error('corrupt zip central directory');
+      var compMethod = dv.getUint16(p + 10, true);
+      var compSize = dv.getUint32(p + 20, true);
+      var nameLen = dv.getUint16(p + 28, true);
+      var extraLen = dv.getUint16(p + 30, true);
+      var commentLen = dv.getUint16(p + 32, true);
+      var localHeaderOffset = dv.getUint32(p + 42, true);
+      var name = textDecoder.decode(buf.slice(p + 46, p + 46 + nameLen));
+      entries[name] = { compMethod: compMethod, compSize: compSize, localHeaderOffset: localHeaderOffset };
+      p += 46 + nameLen + extraLen + commentLen;
+    }
+
+    async function extractEntry(name){
+      var e = entries[name];
+      if (!e) return null;
+      var lp = e.localHeaderOffset;
+      var lNameLen = dv.getUint16(lp + 26, true);
+      var lExtraLen = dv.getUint16(lp + 28, true);
+      var dataStart = lp + 30 + lNameLen + lExtraLen;
+      var compData = buf.slice(dataStart, dataStart + e.compSize);
+      if (e.compMethod === 0) return textDecoder.decode(compData);
+      if (e.compMethod === 8){
+        var stream = new Blob([compData]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+        var decompressed = await new Response(stream).arrayBuffer();
+        return textDecoder.decode(decompressed);
+      }
+      throw new Error('unsupported compression method');
+    }
+
+    function decodeXmlEntities(s){
+      return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&apos;/g,"'");
+    }
+
+    var sharedStrings = [];
+    var ssXml = await extractEntry('xl/sharedStrings.xml');
+    if (ssXml){
+      var siRe = /<si[^>]*>([\s\S]*?)<\/si>/g, m;
+      while ((m = siRe.exec(ssXml))){
+        var textRe = /<t[^>]*>([\s\S]*?)<\/t>/g, t, joined = '';
+        while ((t = textRe.exec(m[1]))) joined += t[1];
+        sharedStrings.push(decodeXmlEntities(joined));
+      }
+    }
+
+    var sheetFiles = Object.keys(entries).filter(function(n){ return /^xl\/worksheets\/sheet\d+\.xml$/.test(n); });
+    sheetFiles.sort(function(a,b){
+      return parseInt(a.match(/sheet(\d+)/)[1],10) - parseInt(b.match(/sheet(\d+)/)[1],10);
+    });
+
+    function colToIndex(col){
+      var idx = 0;
+      for (var i=0;i<col.length;i++) idx = idx*26 + (col.charCodeAt(i)-64);
+      return idx - 1;
+    }
+
+    function parseSheet(xml){
+      var rows = [];
+      var rowRe = /<row[^>]*r="(\d+)"[^>]*>([\s\S]*?)<\/row>/g, rm;
+      while ((rm = rowRe.exec(xml))){
+        var cellRe = /<c[^>]*r="([A-Z]+)(\d+)"([^>]*)>([\s\S]*?)<\/c>/g, cm;
+        var rowArr = [];
+        while ((cm = cellRe.exec(rm[2]))){
+          var col = cm[1], attrs = cm[3], body = cm[4];
+          var typeMatch = attrs.match(/t="([^"]+)"/);
+          var type = typeMatch ? typeMatch[1] : 'n';
+          var vMatch = body.match(/<v[^>]*>([\s\S]*?)<\/v>/);
+          var isMatch = body.match(/<is>([\s\S]*?)<\/is>/);
+          var raw = vMatch ? vMatch[1] : '';
+          var val = '';
+          if (type === 's') val = sharedStrings[parseInt(raw,10)] || '';
+          else if (type === 'inlineStr' && isMatch){
+            var tMatch = isMatch[1].match(/<t[^>]*>([\s\S]*?)<\/t>/);
+            val = tMatch ? tMatch[1] : '';
+          } else val = raw;
+          rowArr[colToIndex(col)] = decodeXmlEntities(val);
+        }
+        for (var i=0;i<rowArr.length;i++) if (rowArr[i]===undefined) rowArr[i]='';
+        rows.push(rowArr);
+      }
+      return rows;
+    }
+
+    var sheets = [];
+    for (var s=0; s<sheetFiles.length; s++){
+      sheets.push(parseSheet(await extractEntry(sheetFiles[s])));
+    }
+    return sheets;
+  }
+
+  // Tries every sheet and returns the first one that yields a usable holdings table.
+  function extractFromSheets(sheets){
+    for (var i = 0; i < sheets.length; i++){
+      var rows = sheets[i].filter(function(r){ return r.some(function(c){ return String(c || '').trim() !== ''; }); });
+      var parsed = extractRows(rows);
+      if (parsed) return parsed;
+    }
+    return null;
+  }
+
+  document.getElementById('import-csv-file').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if (!file) return;
+
+    if (typeof DecompressionStream === 'undefined'){
+      toast('Your browser is a bit old for reading Excel files here — try updating it, or ask for a CSV export instead');
+      e.target.value = '';
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = async function(evt){
+      var parsed = null;
+      try{
+        var sheets = await parseXlsxArrayBuffer(evt.target.result);
+        parsed = extractFromSheets(sheets);
+      }catch(parseErr){
+        parsed = null;
+      }
+
+      if (!parsed){
+        // Fallback: maybe it's an HTML table saved with an .xls/.xlsx extension.
+        try{
+          var text = new TextDecoder('utf-8').decode(new Uint8Array(evt.target.result));
+          if (/<table/i.test(text)){
+            var htmlRows = parseHtmlTable(text);
+            if (htmlRows) parsed = extractRows(htmlRows);
+          }
+        }catch(e2){ /* ignore */ }
+      }
+
+      if (parsed){
+        showImportPreview(parsed);
+      } else {
+        toast('Could not find the holdings table in that file');
+      }
+      e.target.value = '';
+    };
+    reader.readAsArrayBuffer(file);
+  });
+
+  document.getElementById('import-cancel-btn').addEventListener('click', function(){
+    pendingImport = [];
+    document.getElementById('import-preview').style.display = 'none';
+  });
+
+  document.getElementById('import-confirm-btn').addEventListener('click', function(){
+    var added = 0;
+    document.querySelectorAll('.imp-check').forEach(function(cb){
+      if (!cb.checked) return;
+      var idx = cb.dataset.idx;
+      var nameEl = document.querySelector('.imp-name[data-idx="' + idx + '"]');
+      var amtEl = document.querySelector('.imp-amount[data-idx="' + idx + '"]');
+      var name = nameEl.value.trim();
+      var amount = parseFloat(amtEl.value);
+      if (!name || !amount || amount <= 0) return;
+      var orig = pendingImport[idx];
+      var t = guessTemplate((orig && orig.templateText) || name);
+      funds.push({
+        id: Date.now() + '-' + Math.random().toString(36).slice(2,7),
+        name: name, amount: amount,
+        n50: t ? t.n50 : 0, nx50: t ? t.nx50 : 0, mid: t ? t.mid : 0, small: t ? t.small : 0
+      });
+      added++;
+    });
+    if (added === 0){ toast('Nothing selected to import'); return; }
+    saveFundsToDevice();
+    renderFunds();
+    document.getElementById('import-preview').style.display = 'none';
+    pendingImport = [];
+    toast(added + ' fund(s) imported — tap Edit on any to adjust %');
+  });
+
+  // ---------- Fund name autocomplete ----------
+  var FUND_TYPES = [
+    'Nifty 50 Index Fund','Nifty Next 50 Index Fund','Nifty Midcap 150 Index Fund',
+    'Flexicap Fund','Multicap Fund','Multi Asset Allocation Fund','Large Cap Fund',
+    'Large & Midcap Fund','Midcap Fund','Smallcap Fund','ELSS / Tax Saver Fund',
+    'Value Fund','Contra Fund','Focused Fund','Balanced Advantage Fund',
+    'Sectoral / Thematic Fund','Index Fund - Sensex','Hybrid Equity Fund'
+  ];
+  var suggestList = document.getElementById('fund-suggestions');
+
+  nameIn.addEventListener('input', function(){
+    var q = nameIn.value.trim().toLowerCase();
+    if (!q){ suggestList.classList.remove('open'); suggestList.innerHTML=''; return; }
+    var matches = FUND_TYPES.filter(function(t){ return t.toLowerCase().indexOf(q) !== -1; }).slice(0,8);
+    if (matches.length === 0){ suggestList.classList.remove('open'); suggestList.innerHTML=''; return; }
+    suggestList.innerHTML = matches.map(function(m){ return '<li>' + m + '</li>'; }).join('');
+    suggestList.classList.add('open');
+  });
+  suggestList.addEventListener('click', function(e){
+    if (e.target.tagName === 'LI'){
+      nameIn.value = e.target.textContent;
+      suggestList.classList.remove('open');
+      suggestList.innerHTML = '';
+      maybeApplyTemplate();
+      amountIn.focus();
+    }
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.autocomplete-wrap')){
+      suggestList.classList.remove('open');
+    }
+  });
+  nameIn.addEventListener('blur', function(){
+    setTimeout(function(){
+      suggestList.classList.remove('open');
+      maybeApplyTemplate();
+    }, 150);
+  });
+
+  // init
+  loadFundsFromDevice();
+  updateOtherNote();
+  renderFunds();
+
+  var savedTarget = loadTargetFromDevice();
+  if (savedTarget){
+    tN50.value = savedTarget.n50 || '';
+    tNx50.value = savedTarget.nx50 || '';
+    tMid.value = savedTarget.mid || '';
+    tSmall.value = savedTarget.small || '';
+    renderTarget();
+  }
+
+  // Show something immediately (cached/manual/default), then try live fetch which,
+  // if it succeeds, replaces the display automatically.
+  var cachedLive = loadLivePriceFromDevice();
+  if (cachedLive){
+    showPrices(cachedLive.goldG, cachedLive.silverG, '<span class="stale-dot">Last fetched ' + cachedLive.timeLabel + '</span>', cachedLive.timeLabel);
+  } else {
+    var savedRate = loadRateFromDevice();
+    if (savedRate && savedRate.goldG && savedRate.silverG){
+      showManualEntry(savedRate.goldG, savedRate.silverG, savedRate.dateLabel);
+    } else {
+      showManualEntry(DEFAULT_GOLD_G, DEFAULT_SILVER_G, DEFAULT_RATE_DATE);
+    }
+  }
+  // Refresh automatically once per calendar day. If the app stays open, a 6-hour
+  // check is also allowed, but the fetch is skipped when today's price is already cached.
+  function refreshDailyPrices(){
+    var cached = loadLivePriceFromDevice();
+    var today = new Date().toLocaleDateString('en-CA');
+    if (!cached || !cached.timeLabel || cached.timeLabel.indexOf(new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short'})) === -1){
+      fetchLivePrices();
+    }
+  }
+  refreshDailyPrices();
+  setInterval(refreshDailyPrices, 6 * 60 * 60 * 1000);
+})();
+</script>
+
+
+
+<script>
+(function(){
+ const G='https://www.bankbazaar.com/gold-rate-tamil-nadu.html';
+ const S='https://www.bankbazaar.com/silver-rate-tamil-nadu.html';
+ const KEY='shareSplitMetalPrices';
+ const today=()=>new Date().toISOString().slice(0,10);
+ function status(msg,good){
+   let e=document.getElementById('metalFetchStatus');
+   if(!e){e=document.createElement('div');e.id='metalFetchStatus';e.style.cssText='font-size:12px;margin-top:7px;color:var(--ink-soft)';
+     const b=document.getElementById('refreshMetalPrices'); if(b)b.parentNode.appendChild(e);}
+   e.textContent=msg; e.style.color=good?'var(--teal)':'var(--danger)';
+ }
+ async function get(url){
+   const r=await fetch('https://api.allorigins.win/raw?url='+encodeURIComponent(url),{cache:'no-store'});
+   if(!r.ok) throw Error('network');
+   return r.text();
+ }
+ function gold(t){
+   const m=t.match(/Today's Gold Rate in Tamil Nadu[^₹]*₹\s*([\d,]+)\s*\/\s*1 gram\s*\(22K\)/i) ||
+           t.match(/₹\s*([\d,]+)\s*\/\s*1 gram\s*\(22K\)/i);
+   return m?+m[1].replace(/,/g,''):null;
+ }
+ function silver(t){
+   const m=t.match(/1 gram\s*₹\s*([\d,]+)/i);
+   return m?+m[1].replace(/,/g,''):null;
+ }
+ window.fetchTodaysMetalPrices=async function(){
+   status("Fetching today's Tamil Nadu prices…",true);
+   try{
+     const [gt,st]=await Promise.all([get(G),get(S)]);
+     const gv=gold(gt), sv=silver(st);
+     if(!gv||!sv) throw Error('price not found');
+     const d={date:today(),gold:gv,silver:sv,source:'BankBazaar Tamil Nadu'};
+     localStorage.setItem(KEY,JSON.stringify(d));
+     if(window.updateMetalPrices) window.updateMetalPrices(d);
+     document.querySelectorAll('[data-metal-gold]').forEach(x=>x.textContent=gv.toLocaleString('en-IN'));
+     document.querySelectorAll('[data-metal-silver]').forEach(x=>x.textContent=sv.toLocaleString('en-IN'));
+     status('Updated today • BankBazaar Tamil Nadu • '+new Date().toLocaleTimeString(),true);
+   }catch(e){status("Couldn't fetch today's live price. Saved value was not replaced.",false);}
+ };
+ document.addEventListener('DOMContentLoaded',()=>{
+   const b=document.getElementById('refreshMetalPrices');
+   if(b){b.removeAttribute('onclick');b.addEventListener('click',window.fetchTodaysMetalPrices);b.textContent="Fetch Today's Price";}
+ });
+})();
+</script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));}</script></body>
+</html>
